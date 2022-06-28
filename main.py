@@ -21,24 +21,24 @@ def open_file():
     file_path = filedialog.askopenfilename(title='Choice file', filetypes=(('Text files', '*.txt'),
                                                                            ('All files', '*.*')))
     if file_path:
-        text_aria.delete("1.0", END)
+        text_area.delete("1.0", END)
         with open(file_path, 'r', encoding='utf-8') as file:
-            text_aria.insert("1.0", file.read())
+            text_area.insert("1.0", file.read())
 
 
 def save_file():
     file_path = filedialog.asksaveasfilename(title='Save file', filetypes=(('Text files', '*.txt'),
                                                                            ('All files', '*.*')))
     with open(file_path, 'w', encoding='utf-8') as file:
-        new_text = text_aria.get('1.0', END)
+        new_text = text_area.get('1.0', END)
         file.write(new_text)
 
 
 def cheng_theme(theme):
-    text_aria['bg'] = theme_colors[theme]['text_bg']
-    text_aria['fg'] = theme_colors[theme]['text_fg']
-    text_aria['insertbackground'] = theme_colors[theme]['cursor']
-    text_aria['selectbackground'] = theme_colors[theme]['select_bg']
+    text_area['bg'] = theme_colors[theme]['text_bg']
+    text_area['fg'] = theme_colors[theme]['text_fg']
+    text_area['insertbackground'] = theme_colors[theme]['cursor']
+    text_area['selectbackground'] = theme_colors[theme]['select_bg']
 
 
 main_menu = Menu(root)
@@ -52,7 +52,7 @@ file_menu.add_separator()
 file_menu.add_command(label='Quit', command=notepad_quit)
 main_menu.add_cascade(label='File', menu=file_menu)
 
-# Theme
+# Other
 theme_menu = Menu(main_menu, tearoff=0)
 theme_menu_sub = Menu(theme_menu, tearoff=0)
 theme_menu_sub.add_command(label='Light Theme', command=lambda: cheng_theme('light'))
@@ -75,13 +75,13 @@ theme_colors = {
     }
 }
 
-text_aria = Text(text, bg=theme_colors['dark']['text_bg'], fg=theme_colors['dark']['text_fg'], padx=15, pady=10,
+text_area = Text(text, bg=theme_colors['dark']['text_bg'], fg=theme_colors['dark']['text_fg'], padx=15, pady=10,
                  wrap=WORD, insertbackground=theme_colors['dark']['cursor'],
                  selectbackground=theme_colors['dark']['select_bg'], spacing3=10, font=('Arial', 12))
-text_aria.pack(fill=BOTH, expand=1, side=LEFT)
+text_area.pack(fill=BOTH, expand=1, side=LEFT)
 
-scroll = Scrollbar(text, command=text_aria.yview)
+scroll = Scrollbar(text, command=text_area.yview)
 scroll.pack(fill=Y, side=LEFT)
-text_aria.config(yscrollcommand=scroll.set)
+text_area.config(yscrollcommand=scroll.set)
 
 root.mainloop()
