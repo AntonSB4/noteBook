@@ -77,7 +77,7 @@ theme_colors = {
 
 text_area = Text(text, bg=theme_colors['dark']['text_bg'], fg=theme_colors['dark']['text_fg'], padx=15, pady=10,
                  wrap=WORD, insertbackground=theme_colors['dark']['cursor'],
-                 selectbackground=theme_colors['dark']['select_bg'], spacing3=10, font=('Arial', 12))
+                 selectbackground=theme_colors['dark']['select_bg'], spacing3=10, font=('Open Sans', 12))
 text_area.pack(fill=BOTH, expand=1, side=LEFT)
 
 scroll = Scrollbar(text, command=text_area.yview)
